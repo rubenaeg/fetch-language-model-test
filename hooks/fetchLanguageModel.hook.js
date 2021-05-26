@@ -1,38 +1,26 @@
-import { writeFileSync } from "fs";
-import { BaseApp } from "jovo-framework";
-import { Task } from "@jovotech/cli-core";
-import { AirtableCMS } from "jovo-cms-airtable";
+const { writeFileSync } = require("fs");
+const { BaseApp } = require("jovo-framework");
+const { Task } = require("@jovotech/cli-core");
+const { AirtableCMS } = require("jovo-cms-airtable");
 
-export interface Intent {
-  name: string;
-  phrases: string[];
-  inputs?: { name: string; type: string }[];
-}
-
-export interface LanguageModel {
-  invocation: string;
-  intents: Intent[];
-  inputTypes?: { name: string; values: { value: string } }[];
-}
-
-export async function fetchLanguageModel() {
-  const task: Task = new Task(
+async function fetchLanguageModel() {
+  const task = new Task(
     "Getting language model from Airtable CMS",
     async () => {
-      const cms: AirtableCMS = new AirtableCMS({
+      const cms = new AirtableCMS({
         apiKey: process.env.AIRTABLE_API_KEY,
         baseId: process.env.AIRTABLE_BASE_ID,
       });
-      const app: BaseApp = new BaseApp();
+      const app = new BaseApp();
       cms.install(app);
 
-      const entries: any[] = (await cms.loadTableData({
+      const entries = await cms.loadTableData({
         table: "en",
         order: ["name", "type", "phrases/values"],
-      })) as any[];
+      });
       entries.shift();
 
-      const languageModel: LanguageModel = {
+      const languageModel = {
         invocation: "my test app",
         intents: [],
       };
@@ -40,7 +28,7 @@ export async function fetchLanguageModel() {
         const [name, type, values] = entry;
 
         if (type === "intent") {
-          const intent: Intent = { name, phrases: [] };
+          const intent = { name, phrases: [] };
           for (let phrase of values) {
             const match = phrase.match(/{ ([a-zA-Z]*?): ([a-zA-Z]*?) }/);
             if (match) {
@@ -65,7 +53,7 @@ export async function fetchLanguageModel() {
 
           languageModel.inputTypes.push({
             name,
-            values: values.map((value: string) => ({ value })),
+            values: values.map((value) => ({ value })),
           });
         }
       }
@@ -74,3 +62,5 @@ export async function fetchLanguageModel() {
   );
   await task.run();
 }
+
+module.exports = { fetchLanguageModel };
