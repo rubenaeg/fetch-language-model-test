@@ -1,5 +1,5 @@
-import { Webhook } from '@jovotech/server-express';
-import { app } from './app';
+import { Webhook } from "@jovotech/server-express";
+import { app } from "./app";
 
 /*
 |--------------------------------------------------------------------------

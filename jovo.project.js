@@ -1,5 +1,5 @@
 const { ProjectConfig } = require("@jovotech/cli-core");
-const { AlexaCli } = require("@jovotech/platform-alexa/dist/cli");
+const { AlexaCli } = require("@jovotech/platform-alexa");
 const { fetchLanguageModel } = require("./hooks/fetchLanguageModel.hook.js");
 
 require("dotenv").config();
