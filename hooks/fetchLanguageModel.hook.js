@@ -1,11 +1,11 @@
 const { writeFileSync } = require("fs");
 const { BaseApp } = require("jovo-framework");
-const { Task, printUserInput, Log } = require("@jovotech/cli-core");
+const { Task, Log } = require("@jovotech/cli-core");
 const { AirtableCMS } = require("jovo-cms-airtable");
 
 async function fetchLanguageModel() {
   const task = new Task(
-    printUserInput("Getting language model from Airtable CMS"),
+    "Getting language model from Airtable CMS",
     async () => {
       const cms = new AirtableCMS({
         apiKey: process.env.AIRTABLE_API_KEY,

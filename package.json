@@ -20,8 +20,8 @@
     "@jovotech/framework": "^4.0.0-alpha.11",
     "@jovotech/platform-alexa": "^4.0.0-alpha.12",
     "@jovotech/plugin-debugger": "^4.0.0-alpha.5",
-    "dotenv": "^10.0.0",
     "@jovotech/server-express": "4.0.0-alpha.11",
+    "dotenv": "^10.0.0",
     "jovo-cms-airtable": "^3.5.1",
     "jovo-framework": "^3.5.2"
   },
