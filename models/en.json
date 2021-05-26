@@ -1,0 +1,44 @@
+{
+  "invocation": "my test app",
+  "intents": [
+    {
+      "name": "MyNameIsIntent",
+      "phrases": [
+        "i am {name}",
+        "my name is {name}",
+        "{name}"
+      ],
+      "inputs": [
+        {
+          "name": "name",
+          "type": "NameInput"
+        }
+      ]
+    },
+    {
+      "name": "HelloWorldIntent",
+      "phrases": [
+        "hello",
+        "say hello",
+        "hello world",
+        "hi"
+      ]
+    }
+  ],
+  "inputTypes": [
+    {
+      "name": "NameInput",
+      "values": [
+        {
+          "value": "Max"
+        },
+        {
+          "value": "Tom"
+        },
+        {
+          "value": "Tim"
+        }
+      ]
+    }
+  ]
+}
